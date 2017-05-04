@@ -50,4 +50,21 @@ methods.deleteRestaurant = function(req,res){
   })
 }
 
+methods.updateRestaurant = function(req,res){
+  let updateRestaurant = {
+    name:req.body.name,
+    owner:req.body.owner,
+    address:req.body.address,
+    open_status:req.body.openstatus
+  }
+
+  Restaurant.findByIdAndUpdate(req.params.id, updateRestaurant, {new:true}, function(err, result){
+    if(!err){
+      res.send('berhasil update data')
+    }else{
+      res.send(err)
+    }
+  })
+}
+
 module.exports = methods

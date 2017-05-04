@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/', api.getAllFoods)
 router.post('/', api.insertFood)
 router.delete('/:id', api.deleteFood)
-router.post('/:id', api.findOne)
-// router.put('/:id', api.updateFood)
+router.get('/:id', api.findOne)
+router.put('/:id', api.updateFood)
 
 module.exports = router

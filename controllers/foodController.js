@@ -53,6 +53,19 @@ methods.deleteFood = function(req,res){
   })
 }//DELETE FOODS
 
+methods.updateFood = function(req,res){
+  let updateFood = {
+    name:req.body.name,
+    price:req.body.price
+  }
 
+  Food.findByIdAndUpdate(req.params.id, updateFood, {new:true}, function(err, result){
+    if(!err){
+      res.send('berhasil update data')
+    }else{
+      res.send(err)
+    }
+  })
+}
 
 module.exports = methods
