@@ -12,9 +12,12 @@ mongoose.connect('mongodb://localhost:27017/live-code', (err) => {
   }
 })
 
-
+var foods = require('./routes/foods');
+var restaurants = require('./routes/restaurants');
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use('/api/foods', foods);
+app.use('/api/restaurants', restaurants);
