@@ -21,3 +21,5 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/api/foods', foods);
 app.use('/api/restaurants', restaurants);
+
+app.listen(3000)
