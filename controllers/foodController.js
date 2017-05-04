@@ -35,7 +35,7 @@ methods.insertFood = function(req,res){
 methods.findOne = function(req,res){
   Food.findById(req.params.id,function(err, result){
     if(!err){
-      res.send(result)
+      res.send(result.name)
     }else{
       res.send(err)
     }
@@ -54,18 +54,38 @@ methods.deleteFood = function(req,res){
 }//DELETE FOODS
 
 methods.updateFood = function(req,res){
-  let updateFood = {
-    name:req.body.name,
-    price:req.body.price
-  }
-
-  Food.findByIdAndUpdate(req.params.id, updateFood, {new:true}, function(err, result){
+  Food.findById(req.params.id,function(err, result){
     if(!err){
-      res.send('berhasil update data')
+      let updateFood = {
+        name:req.body.name || result.name,
+        price:req.body.price || result.price
+      }
+
+      Food.findByIdAndUpdate(req.params.id, updateFood, {new:true}, function(err, result){
+        if(!err){
+          res.send('berhasil update data')
+        }else{
+          res.send(err)
+        }
+      })
     }else{
       res.send(err)
     }
   })
 }
+// methods.updateFood = function(req,res){
+//   let updateFood = {
+//     name:req.body.name,
+//     price:req.body.price
+//   }
+//
+//   Food.findByIdAndUpdate(req.params.id, updateFood, {new:true}, function(err, result){
+//     if(!err){
+//       res.send('berhasil update data')
+//     }else{
+//       res.send(err)
+//     }
+//   })
+// }
 
 module.exports = methods

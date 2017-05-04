@@ -51,20 +51,44 @@ methods.deleteRestaurant = function(req,res){
 }
 
 methods.updateRestaurant = function(req,res){
-  let updateRestaurant = {
-    name:req.body.name,
-    owner:req.body.owner,
-    address:req.body.address,
-    open_status:req.body.openstatus
-  }
-
-  Restaurant.findByIdAndUpdate(req.params.id, updateRestaurant, {new:true}, function(err, result){
+  Restaurant.findById(req.params.id,function(err, result){
     if(!err){
-      res.send('berhasil update data')
-    }else{
+      let updateRestaurant = {
+        name:req.body.name || result.name,
+        owner:req.body.owner || result.owner,
+        address:req.body.address || result.address,
+        open_status:req.body.openstatus || result.open_status
+      }
+
+      Restaurant.findByIdAndUpdate(req.params.id, updateRestaurant, {new:true}, function(err, result){
+        if(!err){
+          res.send('berhasil update data')
+        }else{
+          res.send(err)
+        }
+      })
+    }
+    else{
       res.send(err)
     }
   })
 }
+
+// methods.updateRestaurant = function(req,res){
+//   let updateRestaurant = {
+//     name:req.body.name,
+//     owner:req.body.owner,
+//     address:req.body.address,
+//     open_status:req.body.openstatus
+//   }
+//
+//   Restaurant.findByIdAndUpdate(req.params.id, updateRestaurant, {new:true}, function(err, result){
+//     if(!err){
+//       res.send('berhasil update data')
+//     }else{
+//       res.send(err)
+//     }
+//   })
+// }
 
 module.exports = methods
