@@ -1,0 +1,25 @@
+{
+  "name": "live-coding-oscar",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./app.js",  
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oscarhermawan/live-coding-oscar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oscarhermawan/live-coding-oscar/issues"
+  },
+  "homepage": "https://github.com/oscarhermawan/live-coding-oscar#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.7"
+  }
+}
